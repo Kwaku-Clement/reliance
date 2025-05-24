@@ -18,15 +18,36 @@ Folder Structure
 text
 reliance_app/
 ├── lib/
-│ ├── main.dart # App entry, routing, and theme setup
-│ ├── core/ # Shared utilities, services, and themes
-│ ├── features/ # Modules for auth, home, payment, settings
-│ ├── l10n/ # Localization files
-│ ├── generated/ # Generated localization code
+│ ├── main.dart # App entry point, GoRouter config, Theme setup, App lifecycle
+│ ├── core/ # Foundational, reusable components across the app
+│ │ ├── di.dart # GetIt dependency injection setup
+│ │ ├── theme/ # Custom theming (colors, text styles, theme controller)
+│ │ ├── utils/ # Generic utilities (e.g., SecureStorageService)
+│ │ ├── services/ # Abstractions for external interactions (APIs, Auth, Biometrics, Location, Device Info)
+│ │ └── models/ # Base models, common data structures
+│ │ └── widgets/ # Reusable UI components (e.g., AppButton)
+│ ├── features/ # Independent, self-contained modules for core functionalities
+│ │ ├── auth/
+│ │ │ ├── models/ # User authentication data models
+│ │ │ ├── controllers/ # Business logic for user authentication (login, logout, session)
+│ │ │ └── views/ # User Interface for authentication flows (LoginScreen)
+│ │ ├── home/
+│ │ │ ├── models/ # Financial data models (Account, Transaction)
+│ │ │ ├── controllers/ # Logic for dashboard data fetching and presentation
+│ │ │ └── views/ # User Interface for the home dashboard, reusable widgets (PrivacyOverlay)
+│ │ ├── payment/
+│ │ │ ├── models/ # Payment request/response data models
+│ │ │ ├── controllers/ # Orchestrates payment logic, device/location data collection, API calls
+│ │ │ └── views/ # User Interface for the payment process
+│ │ └── settings/
+│ │ ├── controllers/ # Logic for application settings and token management
+│ │ └── views/ # User Interface for settings
+│ ├── l10n/ # Localization (ARB files) - Source of translatable strings
+│ ├── generated/ # Generated localization files by flutter gen-l10n
 ├── test/ # Unit and widget tests
-├── pubspec.yaml # Dependencies and config
-├── README.md # Documentation
-├── l10n.yaml # Localization config
+├── pubspec.yaml # Project dependencies, metadata, and Flutter configuration
+├── README.md # Project documentation and setup guide
+├── l10n.yaml # Localization configuration for intl
 Technologies
 
     Flutter & Dart: Cross-platform framework and language.
