@@ -1,0 +1,85 @@
+{
+  "@@locale": "fr",
+  "appTitle": "Reliance",
+  "welcomeMessage": "Bienvenue chez Reliance",
+  "loginButton": "Se connecter en toute sécurité",
+  "usernameHint": "Nom d'utilisateur",
+  "passwordHint": "Mot de passe",
+  "forgotPassword": "Mot de passe oublié ?",
+  "loginFailed": "Échec de la connexion. Veuillez vérifier vos identifiants.",
+  "dashboardTitle": "Tableau de bord",
+  "currentBalance": "Solde actuel",
+  "updatedJustNow": "Mis à jour : À l'instant (Fictif)",
+  "recentTransactions": "Transactions récentes",
+  "noTransactions": "Aucune transaction trouvée.",
+  "makePaymentButton": "Effectuer un paiement",
+  "paymentScreenTitle": "Effectuer un paiement sécurisé",
+  "enterPaymentDetails": "Saisissez les détails du paiement :",
+  "recipientHint": "Compte/ID du bénéficiaire",
+  "amountHint": "Montant",
+  "confirmPayment": "Confirmer le paiement",
+  "processingPayment": "Traitement du paiement...",
+  "paymentSuccessful": "Paiement réussi ! ID de transaction : {transactionId}",
+  "@paymentSuccessful": {
+    "placeholders": {
+      "transactionId": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentFailed": "Échec du paiement : {errorMessage}",
+  "@paymentFailed": {
+    "placeholders": {
+      "errorMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "biometricFailed": "L'authentification biométrique a échoué ou a été annulée.",
+  "biometricNotAvailable": "L'authentification biométrique n'est pas disponible sur cet appareil ou n'est pas configurée.",
+  "securityReminderBackend": "Tous les paiements sont traités de manière sécurisée via des canaux cryptés et validés sur le backend.",
+  "secureStorageTitle": "Paramètres de l'application et jetons",
+  "authTokensSection": "Jetons d'authentification (stockés en toute sécurité)",
+  "authTokenLabel": "Jeton d'authentification :",
+  "refreshTokenLabel": "Jeton d'actualisation :",
+  "enterNewTokenHint": "Saisir un nouveau jeton d'authentification fictif",
+  "storeTokensButton": "Stocker les jetons fictifs",
+  "clearTokensButton": "Effacer tous les jetons",
+  "securityReminderSensitiveData": "Les données sensibles (mots de passe, numéros de carte) ne sont JAMAIS stockées ici. Seuls les jetons gérés de manière sécurisée le sont.",
+  "errorTitle": "Erreur :",
+  "retryButton": "Réessayer",
+  "contentHidden": "Contenu masqué pour votre sécurité",
+  "returnToApp": "Retourner à l'application pour continuer.",
+  "transactionApproved": "Transaction approuvée par biométrie !",
+  "transactionAuthFailed": "Échec de l'authentification de la transaction.",
+  "errorCheckingBiometrics": "Erreur lors de la vérification des capacités biométriques.",
+  "errorGettingBiometrics": "Erreur lors de l'obtention des biometrics disponibles.",
+  "errorDuringBiometricAuth": "Erreur lors de l'authentification biométrique.",
+  "authenticationRequired": "Authentification requise. Aucun jeton trouvé.",
+  "sessionExpired": "Session expirée. Veuillez vous reconnecter.",
+  "networkError": "Erreur réseau : Vérifiez votre connexion internet.",
+  "unexpectedError": "Une erreur inattendue est survenue.",
+  "invalidInput": "Saisie invalide : {message}",
+  "@invalidInput": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "operationFailed": "Opération échouée : {statusCode} - {body}",
+  "@operationFailed": {
+    "placeholders": {
+      "statusCode": {
+        "type": "int"
+      },
+      "body": {
+        "type": "String"
+      }
+    }
+  },
+  "appTheme": "Thème de l'application",
+  "systemTheme": "Système",
+  "lightTheme": "Clair",
+  "darkTheme": "Foncé"
+}

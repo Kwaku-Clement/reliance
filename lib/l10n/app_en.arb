@@ -1,0 +1,85 @@
+{
+  "@@locale": "en",
+  "appTitle": "Reliance",
+  "welcomeMessage": "Welcome to Reliance",
+  "loginButton": "Login Securely",
+  "usernameHint": "Username",
+  "passwordHint": "Password",
+  "forgotPassword": "Forgot Password?",
+  "loginFailed": "Login failed. Please check your credentials.",
+  "dashboardTitle": "Dashboard",
+  "currentBalance": "Current Balance",
+  "updatedJustNow": "Updated: Just now (Dummy)",
+  "recentTransactions": "Recent Transactions",
+  "noTransactions": "No transactions found.",
+  "makePaymentButton": "Make Payment",
+  "paymentScreenTitle": "Make a Secure Payment",
+  "enterPaymentDetails": "Enter payment details:",
+  "recipientHint": "Recipient Account/ID",
+  "amountHint": "Amount",
+  "confirmPayment": "Confirm Payment",
+  "processingPayment": "Processing payment...",
+  "paymentSuccessful": "Payment successful! Transaction ID: {transactionId}",
+  "@paymentSuccessful": {
+    "placeholders": {
+      "transactionId": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentFailed": "Payment failed: {errorMessage}",
+  "@paymentFailed": {
+    "placeholders": {
+      "errorMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "biometricFailed": "Biometric authentication failed or cancelled.",
+  "biometricNotAvailable": "Biometric authentication is not available on this device or not set up.",
+  "securityReminderBackend": "All payments are processed securely via encrypted channels and validated on the backend.",
+  "secureStorageTitle": "App Settings & Tokens",
+  "authTokensSection": "Authentication Tokens (Stored Securely)",
+  "authTokenLabel": "Auth Token:",
+  "refreshTokenLabel": "Refresh Token:",
+  "enterNewTokenHint": "Enter new dummy auth token",
+  "storeTokensButton": "Store Dummy Tokens",
+  "clearTokensButton": "Clear All Tokens",
+  "securityReminderSensitiveData": "Sensitive data (passwords, card numbers) are NEVER stored here. Only securely managed tokens.",
+  "errorTitle": "Error:",
+  "retryButton": "Retry",
+  "contentHidden": "Content Hidden for Your Security",
+  "returnToApp": "Return to the app to continue.",
+  "transactionApproved": "Transaction Approved with Biometrics!",
+  "transactionAuthFailed": "Transaction Authentication Failed.",
+  "errorCheckingBiometrics": "Error checking biometrics capability.",
+  "errorGettingBiometrics": "Error getting available biometrics.",
+  "errorDuringBiometricAuth": "Error during biometric authentication.",
+  "authenticationRequired": "Authentication required. No token found.",
+  "sessionExpired": "Session expired. Please re-login.",
+  "networkError": "Network error: Check your internet connection.",
+  "unexpectedError": "An unexpected error occurred.",
+  "invalidInput": "Invalid input: {message}",
+  "@invalidInput": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "operationFailed": "Operation failed: {statusCode} - {body}",
+  "@operationFailed": {
+    "placeholders": {
+      "statusCode": {
+        "type": "int"
+      },
+      "body": {
+        "type": "String"
+      }
+    }
+  },
+  "appTheme": "App Theme",
+  "systemTheme": "System",
+  "lightTheme": "Light",
+  "darkTheme": "Dark"
+}
