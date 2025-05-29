@@ -5,16 +5,16 @@ import 'package:logger/logger.dart';
 
 class BiometricService {
   final LocalAuthentication _auth;
-  final Logger _logger;
+  final Logger logger;
 
-  BiometricService(this._logger, {LocalAuthentication? localAuth})
+  BiometricService(this.logger, {LocalAuthentication? localAuth})
     : _auth = localAuth ?? LocalAuthentication();
 
   Future<bool> canCheckBiometrics() async {
     try {
       return await _auth.canCheckBiometrics;
     } catch (e) {
-      _logger.e('Error checking biometrics capability: $e'); // Generic error
+      logger.e('Error checking biometrics capability: $e'); // Generic error
       return false;
     }
   }
@@ -23,7 +23,7 @@ class BiometricService {
     try {
       return await _auth.getAvailableBiometrics();
     } catch (e) {
-      _logger.e('Error getting available biometrics: $e'); // Generic error
+      logger.e('Error getting available biometrics: $e'); // Generic error
       return [];
     }
   }
@@ -49,10 +49,10 @@ class BiometricService {
           ),
         ],
       );
-      _logger.i('Biometric authentication result: $authenticated');
+      logger.i('Biometric authentication result: $authenticated');
       return authenticated;
     } catch (e) {
-      _logger.e('Error during biometric authentication: $e'); // Generic error
+      logger.e('Error during biometric authentication: $e'); // Generic error
       return false;
     }
   }

@@ -42,7 +42,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
         .watch<SettingsController>();
 
     return Scaffold(
-      appBar: AppBar(title: Text(localizations.secureStorageTitle)),
+      appBar: AppBar(
+        title: Text(localizations.secureStorageTitle),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: Navigator.of(context).pop,
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -103,8 +109,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   selected:
                       settingsController.currentThemeMode == ThemeMode.system,
                   onSelected: (selected) {
-                    if (selected)
+                    if (selected) {
                       settingsController.setThemeMode(ThemeMode.system);
+                    }
                   },
                 ),
                 ChoiceChip(
@@ -112,8 +119,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   selected:
                       settingsController.currentThemeMode == ThemeMode.light,
                   onSelected: (selected) {
-                    if (selected)
+                    if (selected) {
                       settingsController.setThemeMode(ThemeMode.light);
+                    }
                   },
                 ),
                 ChoiceChip(
@@ -121,8 +129,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   selected:
                       settingsController.currentThemeMode == ThemeMode.dark,
                   onSelected: (selected) {
-                    if (selected)
+                    if (selected) {
                       settingsController.setThemeMode(ThemeMode.dark);
+                    }
                   },
                 ),
               ],

@@ -1,23 +1,62 @@
 {
   "@@locale": "en",
+  "appName": "Reliance",
   "appTitle": "Reliance",
   "welcomeMessage": "Welcome to Reliance",
   "loginButton": "Login Securely",
   "usernameHint": "Username",
+  "emailOrPhoneHint": "Email or Phone Number",
+  "emailHint": "Enter your email",
+  "phoneNumberHint": "Enter your phone number",
   "passwordHint": "Password",
+  "confirmPasswordHint": "Confirm Password",
   "forgotPassword": "Forgot Password?",
-  "loginFailed": "Login failed. Please check your credentials.",
+  "alreadyHaveAccount": "Already have account?",
+  "signUp": "Sign Up",
+  "signIn": "Sign In",
+  "noAccountText": "Don't have an account?",
+  "registerLink": "Register Now",
+  "registerButton": "Register",
+  "fullNameHint": "Full Name",
+  "loginSuccess": "Login successful!",
+  "loginFailed": "Login failed: {message}",
+  "@loginFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "logoutSuccess": "Logged out successfully.",
+  "registrationSuccess": "Registration successful!",
+  "registrationFailed": "Registration failed: {message}",
+  "@registrationFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "requiredField": "All fields are required.",
+  "passwordsDoNotMatch": "Passwords do not match.",
+  "passwordLengthError": "Password must be at least 8 characters.",
+  "invalidEmail": "Please enter a valid email address.",
   "dashboardTitle": "Dashboard",
   "currentBalance": "Current Balance",
+  "balanceSectionTitle": "Current Balance",
   "updatedJustNow": "Updated: Just now (Dummy)",
   "recentTransactions": "Recent Transactions",
+  "transactionsSectionTitle": "Recent Transactions",
   "noTransactions": "No transactions found.",
   "makePaymentButton": "Make Payment",
   "paymentScreenTitle": "Make a Secure Payment",
   "enterPaymentDetails": "Enter payment details:",
   "recipientHint": "Recipient Account/ID",
+  "recipientIdHint": "Recipient ID",
   "amountHint": "Amount",
+  "currencyHint": "Currency",
   "confirmPayment": "Confirm Payment",
+  "sendPaymentButton": "Send Payment",
   "processingPayment": "Processing payment...",
   "paymentSuccessful": "Payment successful! Transaction ID: {transactionId}",
   "@paymentSuccessful": {
@@ -27,6 +66,7 @@
       }
     }
   },
+  "paymentSuccess": "Payment successful!",
   "paymentFailed": "Payment failed: {errorMessage}",
   "@paymentFailed": {
     "placeholders": {
@@ -35,8 +75,10 @@
       }
     }
   },
+  "paymentLimitExceeded": "Payment limit exceeded.",
   "biometricFailed": "Biometric authentication failed or cancelled.",
   "biometricNotAvailable": "Biometric authentication is not available on this device or not set up.",
+  "biometricReason": "Authenticate to access your account",
   "securityReminderBackend": "All payments are processed securely via encrypted channels and validated on the backend.",
   "secureStorageTitle": "App Settings & Tokens",
   "authTokensSection": "Authentication Tokens (Stored Securely)",
@@ -52,9 +94,9 @@
   "returnToApp": "Return to the app to continue.",
   "transactionApproved": "Transaction Approved with Biometrics!",
   "transactionAuthFailed": "Transaction Authentication Failed.",
-  "errorCheckingBiometrics": "Error checking biometrics capability.",
-  "errorGettingBiometrics": "Error getting available biometrics.",
-  "errorDuringBiometricAuth": "Error during biometric authentication.",
+  "errorCheckingBiometrics": "Error checking biometrics capability",
+  "errorGettingBiometrics": "Error getting available biometrics",
+  "errorDuringBiometricAuth": "Error during biometric authentication",
   "authenticationRequired": "Authentication required. No token found.",
   "sessionExpired": "Session expired. Please re-login.",
   "networkError": "Network error: Check your internet connection.",
@@ -78,8 +120,111 @@
       }
     }
   },
+  "changePasswordTitle": "Change Password",
+  "oldPasswordHint": "Old Password",
+  "newPasswordHint": "New Password",
+  "confirmNewPasswordHint": "Confirm New Password",
+  "changePasswordButton": "Change Password",
+  "passwordChangeSuccess": "Password changed successfully!",
+  "passwordChangeFailed": "Password change failed: {message}",
+  "@passwordChangeFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "forgotPasswordTitle": "Forgot Password",
+  "sendResetLinkButton": "Send Reset Link",
+  "resetLinkSent": "Password reset link sent to your email.",
+  "resetPasswordTitle": "Reset Password",
+  "resetPasswordButton": "Reset Password",
+  "passwordResetSuccess": "Password reset successfully!",
+  "passwordResetFailed": "Password reset failed: {message}",
+  "@passwordResetFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "setPasscodeTitle": "Set Passcode",
+  "passcodeHint": "Enter 4-digit Passcode",
+  "confirmPasscodeHint": "Confirm Passcode",
+  "setPasscodeButton": "Set Passcode",
+  "passcodeSetSuccess": "Passcode set successfully!",
+  "passcodeSetFailed": "Passcode set failed: {message}",
+  "@passcodeSetFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "passcodesDoNotMatch": "Passcodes do not match.",
+  "passcodeLengthError": "Passcode must be 4 digits.",
+  "profileSetupTitle": "Complete Your Profile",
+  "scanIdCardButton": "Scan ID Card",
+  "scanFaceButton": "Scan Face",
+  "completeProfileButton": "Complete Profile",
+  "idScanSuccess": "ID Card scanned successfully!",
+  "idScanFailed": "ID Card scan failed.",
+  "faceScanSuccess": "Face scanned successfully!",
+  "faceScanFailed": "Face scan failed.",
   "appTheme": "App Theme",
   "systemTheme": "System",
   "lightTheme": "Light",
-  "darkTheme": "Dark"
+  "darkTheme": "Dark",
+  "otpVerificationTitle": "OTP Verification",
+  "otpSentTo": "OTP sent to {destination}",
+  "@otpSentTo": {
+    "placeholders": {
+      "destination": {}
+    }
+  },
+  "enterOtpHint": "Enter 6-digit OTP",
+  "verifyOtpButton": "Verify OTP",
+  "resendOtpButton": "Resend OTP",
+  "confirmYourPhone": "Confirm your phone",
+  "verifyYourNumber": "Verify Your Number",
+  "invalidOtp": "Invalid OTP. Please enter a 6-digit code.",
+  "otpVerificationSuccess": "OTP verified successfully!",
+  "otpVerificationFailed": "OTP verification failed: {error}",
+  "@otpVerificationFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "otpResent": "OTP resent successfully!",
+  "otpResendFailed": "Failed to resend OTP: {error}",
+  "@otpResendFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+    "confirmButtonText": "Confirm",
+    "confirmPasscodeLabel": "Confirm Passcode",
+    "passcodeLabel": "Passcode",
+    "setPasscodeDescription": "Please set a 4-digit passcode for your account.",
+    "scanIdTitle": "Scan Your ID",
+    "scanIdDescription": "Please scan the front and back of your ID.",
+    "scanIdFrontButton": "Scan Front",
+    "scanIdBackButton": "Scan Back",
+    "nextButtonText": "Next",
+    "completeSetupButton": "Complete Setup",
+    "takeSelfieButton": "Take Selfie",
+    "scanFaceDescription": "Position your face in the frame.",
+    "scanFaceTitle": "Scan Your Face",
+    "genderLabel": "Gender",
+    "dobLabel": "Date of Birth",
+    "lastNameLabel": "Last Name",
+    "firstNameLabel": "First Name",
+    "personalDetailsDescription": "Please provide your personal details.",
+    "personalDetailsTitle": "Personal Details",
+    "idScanUploadError": "Failed to upload ID scan.",
+    "idScanRequired": "ID scan is required.",
+    "imagePickError": "Failed to pick image.",
+    "faceScanUploadError": "Failed to upload face scan.",
+    "selfieRequired": "Selfie is required.",
+    "selfieCaptureError": "Failed to capture selfie."
 }

@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:reliance/core/theme/ap_colors.dart';
 import 'package:reliance/l10n/app_localizations.dart';
 import '../controllers/home_controller.dart';
-import '../../auth/controllers/auth_controller.dart';
+import '../../auth/controllers/auth_viewmodel.dart';
 import '../../../core/theme/app_text_styles.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -28,11 +28,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final AppLocalizations localizations = AppLocalizations.of(context)!;
     final HomeController homeController = context.watch<HomeController>();
-    final AuthController authController = context.read<AuthController>();
+    final AuthViewModel authViewModel = context.read<AuthViewModel>();
 
     final currencyFormatter = NumberFormat.currency(
       locale: Localizations.localeOf(context).toString(),
-      symbol: '\$',
+      symbol: '\₵',
     );
 
     return Scaffold(
@@ -46,16 +46,13 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {
-              await authController.logout();
-              if (mounted) {
-                context.go('/');
-              }
+              await authViewModel.logout();
             },
           ),
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              context.go('/settings');
+              context.pushNamed('settings');
             },
           ),
         ],
@@ -197,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          context.go('/payment');
+          context.pushNamed('payment');
         },
         label: Text(localizations.makePaymentButton),
         icon: const Icon(Icons.send),

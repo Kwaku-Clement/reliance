@@ -1,23 +1,64 @@
 {
   "@@locale": "fr",
+  "appName": "Reliance",
   "appTitle": "Reliance",
-  "welcomeMessage": "Bienvenue chez Reliance",
-  "loginButton": "Se connecter en toute sécurité",
+  "welcomeMessage": "Bienvenue sur Reliance",
+  "loginButton": "Connexion sécurisée",
   "usernameHint": "Nom d'utilisateur",
+  "emailOrPhoneHint": "Email ou numéro de téléphone",
+  "emailHint": "Entrez votre email",
+  "phoneNumberHint": "Entrez votre numéro de téléphone",
+  "confirmYourPhone": "Confirmez votre téléphone",
+  "verifyYourNumber": "Vérifiez votre numéro",
   "passwordHint": "Mot de passe",
+  "confirmPasswordHint": "Confirmer le mot de passe",
   "forgotPassword": "Mot de passe oublié ?",
-  "loginFailed": "Échec de la connexion. Veuillez vérifier vos identifiants.",
+  "alreadyHaveAccount": "Vous avez déjà un compte ?",
+  "signUp": "S'inscrire",
+  "signIn": "Se connecter",
+  "noAccountText": "Vous n'avez pas de compte ?",
+  "registerLink": "Inscrivez-vous maintenant",
+  "registerButton": "S'inscrire",
+  "fullNameHint": "Nom complet",
+  "loginSuccess": "Connexion réussie !",
+  "loginFailed": "Échec de la connexion : {message}",
+  "@loginFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "logoutSuccess": "Déconnexion réussie.",
+  "registrationSuccess": "Inscription réussie !",
+  "registrationFailed": "Échec de l'inscription : {message}",
+"@registrationFailed": {
+  "placeholders": {
+    "message": {
+      "type": "String"
+    }
+  }
+},
+  "requiredField": "Tous les champs sont requis.",
+  "passwordsDoNotMatch": "Les mots de passe ne correspondent pas.",
+  "passwordLengthError": "Le mot de passe doit comporter au moins 8 caractères.",
+  "invalidEmail": "Veuillez entrer une adresse email valide.",
   "dashboardTitle": "Tableau de bord",
   "currentBalance": "Solde actuel",
-  "updatedJustNow": "Mis à jour : À l'instant (Fictif)",
+  "balanceSectionTitle": "Solde actuel",
+  "updatedJustNow": "Mis à jour : À l'instant (fictif)",
   "recentTransactions": "Transactions récentes",
+  "transactionsSectionTitle": "Transactions récentes",
   "noTransactions": "Aucune transaction trouvée.",
   "makePaymentButton": "Effectuer un paiement",
   "paymentScreenTitle": "Effectuer un paiement sécurisé",
-  "enterPaymentDetails": "Saisissez les détails du paiement :",
-  "recipientHint": "Compte/ID du bénéficiaire",
+  "enterPaymentDetails": "Entrez les détails du paiement :",
+  "recipientHint": "Compte/ID du destinataire",
+  "recipientIdHint": "ID du destinataire",
   "amountHint": "Montant",
+  "currencyHint": "Devise",
   "confirmPayment": "Confirmer le paiement",
+  "sendPaymentButton": "Envoyer le paiement",
   "processingPayment": "Traitement du paiement...",
   "paymentSuccessful": "Paiement réussi ! ID de transaction : {transactionId}",
   "@paymentSuccessful": {
@@ -27,6 +68,7 @@
       }
     }
   },
+  "paymentSuccess": "Paiement réussi !",
   "paymentFailed": "Échec du paiement : {errorMessage}",
   "@paymentFailed": {
     "placeholders": {
@@ -35,31 +77,33 @@
       }
     }
   },
+  "paymentLimitExceeded": "Limite de paiement dépassée.",
   "biometricFailed": "L'authentification biométrique a échoué ou a été annulée.",
   "biometricNotAvailable": "L'authentification biométrique n'est pas disponible sur cet appareil ou n'est pas configurée.",
-  "securityReminderBackend": "Tous les paiements sont traités de manière sécurisée via des canaux cryptés et validés sur le backend.",
+  "biometricReason": "Authentifiez-vous pour accéder à votre compte",
+  "securityReminderBackend": "Tous les paiements sont traités de manière sécurisée via des canaux cryptés et validés en backend.",
   "secureStorageTitle": "Paramètres de l'application et jetons",
-  "authTokensSection": "Jetons d'authentification (stockés en toute sécurité)",
+  "authTokensSection": "Jetons d'authentification (stockés de manière sécurisée)",
   "authTokenLabel": "Jeton d'authentification :",
-  "refreshTokenLabel": "Jeton d'actualisation :",
-  "enterNewTokenHint": "Saisir un nouveau jeton d'authentification fictif",
+  "refreshTokenLabel": "Jeton de rafraîchissement :",
+  "enterNewTokenHint": "Entrez un nouveau jeton d'authentification fictif",
   "storeTokensButton": "Stocker les jetons fictifs",
-  "clearTokensButton": "Effacer tous les jetons",
+  "clearTokensButton": "Supprimer tous les jetons",
   "securityReminderSensitiveData": "Les données sensibles (mots de passe, numéros de carte) ne sont JAMAIS stockées ici. Seuls les jetons gérés de manière sécurisée le sont.",
   "errorTitle": "Erreur :",
   "retryButton": "Réessayer",
   "contentHidden": "Contenu masqué pour votre sécurité",
-  "returnToApp": "Retourner à l'application pour continuer.",
-  "transactionApproved": "Transaction approuvée par biométrie !",
+  "returnToApp": "Retournez à l'application pour continuer.",
+  "transactionApproved": "Transaction approuvée avec la biométrie !",
   "transactionAuthFailed": "Échec de l'authentification de la transaction.",
-  "errorCheckingBiometrics": "Erreur lors de la vérification des capacités biométriques.",
-  "errorGettingBiometrics": "Erreur lors de l'obtention des biometrics disponibles.",
-  "errorDuringBiometricAuth": "Erreur lors de l'authentification biométrique.",
+  "errorCheckingBiometrics": "Erreur lors de la vérification de la capacité biométrique",
+  "errorGettingBiometrics": "Erreur lors de l'obtention des biométries disponibles",
+  "errorDuringBiometricAuth": "Erreur lors de l'authentification biométrique",
   "authenticationRequired": "Authentification requise. Aucun jeton trouvé.",
   "sessionExpired": "Session expirée. Veuillez vous reconnecter.",
-  "networkError": "Erreur réseau : Vérifiez votre connexion internet.",
-  "unexpectedError": "Une erreur inattendue est survenue.",
-  "invalidInput": "Saisie invalide : {message}",
+  "networkError": "Erreur réseau : Vérifiez votre connexion Internet.",
+  "unexpectedError": "Une erreur inattendue s'est produite.",
+  "invalidInput": "Entrée invalide : {message}",
   "@invalidInput": {
     "placeholders": {
       "message": {
@@ -78,8 +122,109 @@
       }
     }
   },
+  "changePasswordTitle": "Changer le mot de passe",
+  "oldPasswordHint": "Ancien mot de passe",
+  "newPasswordHint": "Nouveau mot de passe",
+  "confirmNewPasswordHint": "Confirmer le nouveau mot de passe",
+  "changePasswordButton": "Changer le mot de passe",
+  "passwordChangeSuccess": "Mot de passe changé avec succès !",
+  "passwordChangeFailed": "Échec du changement de mot de passe : {message}",
+  "@passwordChangeFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "forgotPasswordTitle": "Mot de passe oublié",
+  "sendResetLinkButton": "Envoyer le lien de réinitialisation",
+  "resetLinkSent": "Lien de réinitialisation du mot de passe envoyé à votre email.",
+  "resetPasswordTitle": "Réinitialiser le mot de passe",
+  "resetPasswordButton": "Réinitialiser le mot de passe",
+  "passwordResetSuccess": "Mot de passe réinitialisé avec succès !",
+  "passwordResetFailed": "Échec de la réinitialisation du mot de passe : {message}",
+  "@passwordResetFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "setPasscodeTitle": "Définir le code d'accès",
+  "passcodeHint": "Entrez un code d'accès à 4 chiffres",
+  "confirmPasscodeHint": "Confirmer le code d'accès",
+  "setPasscodeButton": "Définir le code d'accès",
+  "passcodeSetSuccess": "Code d'accès défini avec succès !",
+  "passcodeSetFailed": "Échec de la définition du code d'accès : {message}",
+  "@passcodeSetFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "passcodesDoNotMatch": "Les codes d'accès ne correspondent pas.",
+  "passcodeLengthError": "Le code d'accès doit comporter 4 chiffres.",
+  "profileSetupTitle": "Compléter votre profil",
+  "scanIdCardButton": "Scanner la carte d'identité",
+  "scanFaceButton": "Scanner le visage",
+  "completeProfileButton": "Compléter le profil",
+  "idScanSuccess": "Carte d'identité scannée avec succès !",
+  "idScanFailed": "Échec du scan de la carte d'identité.",
+  "faceScanSuccess": "Visage scanné avec succès !",
+  "faceScanFailed": "Échec du scan du visage.",
   "appTheme": "Thème de l'application",
   "systemTheme": "Système",
   "lightTheme": "Clair",
-  "darkTheme": "Foncé"
+  "darkTheme": "Sombre",
+  "otpVerificationTitle": "Vérification OTP",
+  "otpSentTo": "OTP envoyé à {destination}",
+  "@otpSentTo": {
+    "placeholders": {
+      "destination": {}
+    }
+  },
+  "enterOtpHint": "Entrez le code OTP à 6 chiffres",
+  "verifyOtpButton": "Vérifier l'OTP",
+  "resendOtpButton": "Renvoyer l'OTP",
+  "invalidOtp": "OTP invalide. Veuillez entrer un code à 6 chiffres.",
+  "otpVerificationSuccess": "OTP vérifié avec succès !",
+  "otpVerificationFailed": "Échec de la vérification OTP : {error}",
+  "@otpVerificationFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "otpResent": "OTP renvoyé avec succès !",
+  "otpResendFailed": "Échec du renvoi de l'OTP : {error}",
+  "@otpResendFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+    "confirmButtonText": "Confirmer",
+    "confirmPasscodeLabel": "Confirmer le code secret",
+    "passcodeLabel": "Code secret",
+    "setPasscodeDescription": "Veuillez définir un code secret à 4 chiffres pour votre compte.",
+    "scanIdTitle": "Scannez votre pièce d'identité",
+    "scanIdDescription": "Veuillez scanner le recto et le verso de votre pièce d'identité.",
+    "scanIdFrontButton": "Scanner le recto",
+    "scanIdBackButton": "Scanner le verso",
+    "nextButtonText": "Suivant",
+    "completeSetupButton": "Terminer la configuration",
+    "takeSelfieButton": "Prendre un selfie",
+    "scanFaceDescription": "Positionnez votre visage dans le cadre.",
+    "scanFaceTitle": "Scannez votre visage",
+    "genderLabel": "Sexe",
+    "dobLabel": "Date de naissance",
+    "lastNameLabel": "Nom de famille",
+    "firstNameLabel": "Prénom",
+    "personalDetailsDescription": "Veuillez fournir vos informations personnelles.",
+    "personalDetailsTitle": "Détails personnels",
+    "idScanUploadError": "Échec du téléchargement du scan d'identité.",
+    "idScanRequired": "Le scan d'identité est requis.",
+    "imagePickError": "Échec de la sélection de l'image.",
+    "faceScanUploadError": "Échec du téléchargement du scan facial.",
+    "selfieRequired": "Un selfie est requis.",
+    "selfieCaptureError": "Échec de la capture du selfie."
 }

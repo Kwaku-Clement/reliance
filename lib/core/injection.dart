@@ -1,87 +1,137 @@
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
+import 'package:reliance/core/router/app_router.dart';
+import 'package:reliance/core/services/api_service.dart';
+import 'package:reliance/core/services/auth_service.dart';
+import 'package:reliance/core/services/biometric_service.dart';
+import 'package:reliance/core/services/device_info_service.dart';
+import 'package:reliance/core/services/location_service.dart';
+import 'package:reliance/core/theme/theme_controller.dart';
+import 'package:reliance/core/utils/secure_storage_service.dart';
+import 'package:reliance/features/auth/controllers/auth_viewmodel.dart';
+import 'package:reliance/features/auth/views/login/login_viewmodel.dart';
+import 'package:reliance/features/auth/views/otp/otp_verification_viewmodel.dart';
+import 'package:reliance/features/auth/views/signup/signup_viewmodel.dart'; // Assuming RegisterViewModel is in signup/signup_viewmodel.dart
+import 'package:reliance/features/home/controllers/home_controller.dart';
+import 'package:reliance/features/payment/controllers/payment_controller.dart';
+import 'package:reliance/features/settings/controllers/settings_controller.dart';
+import 'package:reliance/features/user/controllers/profile_setup_viewmodel.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // For SharedPreferences
 
 // Core Services
-import 'services/api_service.dart';
-import 'services/auth_service.dart';
-import 'services/biometric_service.dart';
-import 'services/device_info_service.dart';
-import 'services/location_service.dart';
-import 'utils/secure_storage_service.dart';
-import 'theme/theme_controller.dart';
-
-// Feature Controllers
-import '../features/auth/controllers/auth_controller.dart';
-import '../features/home/controllers/home_controller.dart';
-import '../features/payment/controllers/payment_controller.dart';
-import '../features/settings/controllers/settings_controller.dart';
-
 final GetIt getIt = GetIt.instance;
 
-void setupGetIt() {
-  // Ensure GetIt is reset before setting up, especially in tests
-  if (getIt.isRegistered<Logger>()) {
-    getIt.reset();
-  }
+/// Sets up all application dependencies using GetIt.
+///
+/// This function should be called once at the start of the application.
+Future<void> setupDependencies() async {
+  // --- Register Utilities & Common Components ---
+  getIt.registerSingleton<Logger>(Logger());
+  getIt.registerSingleton<SecureStorageService>(
+    SecureStorageService(getIt<Logger>()),
+  );
 
-  // --- Register Logger ---
-  getIt.registerSingleton<Logger>(
-    Logger(
-      printer: PrettyPrinter(
-        methodCount: 0,
-        errorMethodCount: 5,
-        lineLength: 80,
-        colors: true,
-        printEmojis: true,
-        printTime: false,
-      ),
+  // Register SharedPreferences asynchronously and wait for it to be ready.
+  getIt.registerSingletonAsync<SharedPreferences>(
+    () => SharedPreferences.getInstance(),
+  );
+  await getIt
+      .isReady<SharedPreferences>(); // Ensure SharedPreferences is initialized
+
+  // --- Register Core Services ---
+
+  // Register ApiService FIRST, as AuthService depends on it.
+  getIt.registerSingleton<ApiService>(
+    ApiService(getIt<SecureStorageService>(), getIt<Logger>()),
+  );
+
+  getIt.registerSingleton<AuthService>(
+    AuthService(
+      getIt<SecureStorageService>(),
+      getIt<Logger>(),
+      getIt<SharedPreferences>(),
+      getIt<ApiService>(),
     ),
   );
 
-  // --- Register Core Utilities & Services (Singletons) ---
-  // Services are typically singletons as they don't hold UI state and are reusable
-  getIt.registerLazySingleton<SecureStorageService>(
-    () => SecureStorageService(getIt()),
-  );
-  getIt.registerLazySingleton<AuthService>(() => AuthService(getIt(), getIt()));
-  getIt.registerLazySingleton<ApiService>(
-    () => ApiService(getIt(), getIt(), getIt()),
-  );
-  getIt.registerLazySingleton<BiometricService>(
-    () => BiometricService(getIt()),
-  );
-  getIt.registerLazySingleton<LocationService>(() => LocationService(getIt()));
-  getIt.registerLazySingleton<DeviceInfoService>(
-    () => DeviceInfoService(getIt()),
-  );
-  getIt.registerLazySingleton<ThemeController>(() => ThemeController(getIt()));
+  // If ApiService needs AuthService, and you removed it from ApiService's constructor for circularity,
+  // you would then set it here *after* both are registered.
+  // Example (assuming ApiService has a `setAuthService` method):
+  // getIt<ApiService>().setAuthService(getIt<AuthService>());
 
-  // --- Register Feature Controllers (Lazy Singletons) ---
-  // Controllers are ChangeNotifiers and will be provided via Provider in the widget tree.
-  // We register them as lazy singletons here so they can be accessed by other controllers
-  // or services if needed (e.g., AuthService needs AuthController to refresh token).
-  // Provider will manage their lifecycle in the UI.
-  getIt.registerLazySingleton<AuthController>(
-    () => AuthController(getIt(), getIt()),
+  getIt.registerSingleton<BiometricService>(BiometricService(getIt<Logger>()));
+  getIt.registerSingleton<DeviceInfoService>(
+    DeviceInfoService(getIt<Logger>()),
   );
-  getIt.registerLazySingleton<HomeController>(
-    () => HomeController(getIt(), getIt()),
+  getIt.registerSingleton<LocationService>(LocationService(getIt<Logger>()));
+
+  // --- Register App Router ---
+  // AppRouter depends on AuthService for its redirect logic based on auth state.
+  getIt.registerSingleton<AppRouter>(AppRouter(getIt<AuthService>()));
+
+  // --- Register ViewModels (Controllers) as Factories ---
+  // Use registerFactory for ViewModels as they might hold mutable state tied to specific screens.
+  // Each ViewModel injects its required services and the AppRouter for navigation.
+  getIt.registerFactory<LoginViewModel>(
+    () => LoginViewModel(
+      getIt<AuthService>(),
+      getIt<Logger>(),
+      getIt<AppRouter>(),
+    ),
   );
-  getIt.registerLazySingleton<PaymentController>(
-    () => PaymentController(getIt(), getIt(), getIt(), getIt(), getIt()),
+  // Assuming RegisterViewModel is in signup/signup_viewmodel.dart
+  getIt.registerFactory<RegisterViewModel>(
+    () => RegisterViewModel(
+      getIt<AuthService>(),
+      getIt<Logger>(),
+      getIt<AppRouter>(),
+    ),
   );
-  getIt.registerLazySingleton<SettingsController>(
-    () => SettingsController(getIt(), getIt()),
+  getIt.registerFactory<OtpVerificationViewModel>(
+    // New ViewModel
+    () => OtpVerificationViewModel(
+      getIt<AuthService>(),
+      getIt<Logger>(),
+      getIt<AppRouter>(),
+    ),
+  );
+  getIt.registerFactory<AuthViewModel>(
+    // Renamed from PasswordViewModel if it's the same class
+    () => AuthViewModel(
+      getIt<AuthService>(),
+      getIt<Logger>(),
+      getIt<AppRouter>(),
+    ),
   );
 
-  // Note on ChangeNotifiers and GetIt:
-  // When a ChangeNotifier is registered as a lazySingleton in GetIt, its dispose method
-  // is usually called when GetIt.reset() is invoked (e.g., during app shutdown or test teardown).
-  // When used with Provider, Provider also calls dispose when the ChangeNotifierProvider
-  // is removed from the widget tree. This dual management is generally fine, but be aware.
-  // For production, ensure your app's main dispose logic (e.g., in main.dart)
-  // handles GetIt.reset() if you want to explicitly clean up singletons.
+  getIt.registerFactory<ProfileSetupViewModel>(
+    () => ProfileSetupViewModel(
+      getIt<AuthService>(),
+      getIt<Logger>(),
+      getIt<AppRouter>(),
+    ),
+  );
+  getIt.registerFactory<HomeController>(
+    () => HomeController(getIt<ApiService>(), getIt<Logger>()),
+  );
+  getIt.registerFactory<PaymentController>(
+    () => PaymentController(
+      getIt<ApiService>(),
+      getIt<BiometricService>(),
+      getIt<LocationService>(),
+      getIt<DeviceInfoService>(),
+      getIt<Logger>(),
+    ),
+  );
+  getIt.registerFactory<ThemeController>(
+    // Ensure this is registered BEFORE SettingsController if SettingsController depends on it
+    () => ThemeController(getIt<SecureStorageService>()),
+  );
+  getIt.registerFactory<SettingsController>(
+    // Ensure this is registered
+    () => SettingsController(
+      getIt<SecureStorageService>(),
+      getIt<ThemeController>(),
+    ),
+  );
 }
-
-// Helper to get instances more conveniently
-T find<T extends Object>() => getIt.get<T>();

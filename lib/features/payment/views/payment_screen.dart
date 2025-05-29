@@ -55,7 +55,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
     // Optional: Biometric Authentication
     if (paymentController.canUseBiometrics) {
-      bool authenticated = await paymentController.authenticateBiometrics(
+      bool authenticated = await paymentController.authenticateWithBiometrics(
         localizations.confirmPayment,
       );
       if (!authenticated) {
@@ -91,8 +91,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           displayMessage.replaceFirst('Payment failed: ', ''),
         );
       } else {
-        displayMessage = localizations
-            .unexpectedError; // Fallback for any other unexpected errors
+        displayMessage = localizations.unexpectedError;
       }
 
       _showSnackBar(displayMessage, isError: isError);
@@ -130,7 +129,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
         .watch<PaymentController>();
 
     return Scaffold(
-      appBar: AppBar(title: Text(localizations.paymentScreenTitle)),
+      appBar: AppBar(
+        title: Text(localizations.paymentScreenTitle),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: Navigator.of(context).pop,
+        ),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Column(

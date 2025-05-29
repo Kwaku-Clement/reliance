@@ -2,9 +2,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:logger/logger.dart';
 
 class LocationService {
-  final Logger _logger;
+  final Logger logger;
 
-  LocationService(this._logger);
+  LocationService(this.logger);
 
   Future<Position?> getCurrentLocation() async {
     bool serviceEnabled;
@@ -12,7 +12,7 @@ class LocationService {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      _logger.w('Location services are disabled.');
+      logger.w('Location services are disabled.');
       return null;
     }
 
@@ -20,13 +20,13 @@ class LocationService {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        _logger.w('Location permissions are denied.');
+        logger.w('Location permissions are denied.');
         return null;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      _logger.w(
+      logger.w(
         'Location permissions are permanently denied, we cannot request permissions.',
       );
       return null;
@@ -36,12 +36,12 @@ class LocationService {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
-      _logger.i(
+      logger.i(
         'Location obtained: ${position.latitude}, ${position.longitude}',
       );
       return position;
     } catch (e) {
-      _logger.e('Error getting current location: $e'); // Generic error
+      logger.e('Error getting current location: $e'); // Generic error
       return null;
     }
   }

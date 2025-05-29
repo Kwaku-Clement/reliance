@@ -3,9 +3,9 @@ import 'package:logger/logger.dart';
 
 class SecureStorageService {
   final FlutterSecureStorage _storage;
-  final Logger _logger;
+  final Logger logger;
 
-  SecureStorageService(this._logger) : _storage = const FlutterSecureStorage();
+  SecureStorageService(this.logger) : _storage = const FlutterSecureStorage();
 
   static const _authTokenKey = 'jwt_auth_token';
   static const _refreshTokenKey = 'jwt_refresh_token';
@@ -15,19 +15,19 @@ class SecureStorageService {
   Future<void> writeAuthToken(String token) async {
     try {
       await _storage.write(key: _authTokenKey, value: token);
-      _logger.i('Auth Token written successfully.');
+      logger.i('Auth Token written successfully.');
     } catch (e) {
-      _logger.e('Error writing auth token: $e');
+      logger.e('Error writing auth token: $e');
     }
   }
 
   Future<String?> readAuthToken() async {
     try {
       final token = await _storage.read(key: _authTokenKey);
-      _logger.i('Auth Token read: ${token != null ? 'Exists' : 'None'}');
+      logger.i('Auth Token read: ${token != null ? 'Exists' : 'None'}');
       return token;
     } catch (e) {
-      _logger.e('Error reading auth token: $e');
+      logger.e('Error reading auth token: $e');
       return null;
     }
   }
@@ -35,28 +35,28 @@ class SecureStorageService {
   Future<void> deleteAuthToken() async {
     try {
       await _storage.delete(key: _authTokenKey);
-      _logger.i('Auth Token deleted.');
+      logger.i('Auth Token deleted.');
     } catch (e) {
-      _logger.e('Error deleting auth token: $e');
+      logger.e('Error deleting auth token: $e');
     }
   }
 
   Future<void> writeRefreshToken(String token) async {
     try {
       await _storage.write(key: _refreshTokenKey, value: token);
-      _logger.i('Refresh Token written successfully.');
+      logger.i('Refresh Token written successfully.');
     } catch (e) {
-      _logger.e('Error writing refresh token: $e');
+      logger.e('Error writing refresh token: $e');
     }
   }
 
   Future<String?> readRefreshToken() async {
     try {
       final token = await _storage.read(key: _refreshTokenKey);
-      _logger.i('Refresh Token read: ${token != null ? 'Exists' : 'None'}');
+      logger.i('Refresh Token read: ${token != null ? 'Exists' : 'None'}');
       return token;
     } catch (e) {
-      _logger.e('Error reading refresh token: $e');
+      logger.e('Error reading refresh token: $e');
       return null;
     }
   }
@@ -64,9 +64,9 @@ class SecureStorageService {
   Future<void> deleteRefreshToken() async {
     try {
       await _storage.delete(key: _refreshTokenKey);
-      _logger.i('Refresh Token deleted.');
+      logger.i('Refresh Token deleted.');
     } catch (e) {
-      _logger.e('Error deleting refresh token: $e');
+      logger.e('Error deleting refresh token: $e');
     }
   }
 
@@ -74,9 +74,9 @@ class SecureStorageService {
     try {
       await _storage.delete(key: _authTokenKey);
       await _storage.delete(key: _refreshTokenKey);
-      _logger.i('All authentication tokens deleted.');
+      logger.i('All authentication tokens deleted.');
     } catch (e) {
-      _logger.e('Error deleting all authentication tokens: $e');
+      logger.e('Error deleting all authentication tokens: $e');
     }
   }
 
@@ -84,21 +84,19 @@ class SecureStorageService {
   Future<void> writeAppSetting(String key, String value) async {
     try {
       await _storage.write(key: '$_appSettingsPrefix$key', value: value);
-      _logger.i('App setting "$key" written successfully.');
+      logger.i('App setting "$key" written successfully.');
     } catch (e) {
-      _logger.e('Error writing app setting "$key": $e');
+      logger.e('Error writing app setting "$key": $e');
     }
   }
 
   Future<String?> readAppSetting(String key) async {
     try {
       final value = await _storage.read(key: '$_appSettingsPrefix$key');
-      _logger.i(
-        'App setting "$key" read: ${value != null ? 'Exists' : 'None'}',
-      );
+      logger.i('App setting "$key" read: ${value != null ? 'Exists' : 'None'}');
       return value;
     } catch (e) {
-      _logger.e('Error reading app setting "$key": $e');
+      logger.e('Error reading app setting "$key": $e');
       return null;
     }
   }
@@ -106,9 +104,9 @@ class SecureStorageService {
   Future<void> deleteAppSetting(String key) async {
     try {
       await _storage.delete(key: '$_appSettingsPrefix$key');
-      _logger.i('App setting "$key" deleted.');
+      logger.i('App setting "$key" deleted.');
     } catch (e) {
-      _logger.e('Error deleting app setting "$key": $e');
+      logger.e('Error deleting app setting "$key": $e');
     }
   }
 }

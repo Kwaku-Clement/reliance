@@ -4,10 +4,10 @@ import 'dart:io';
 
 class DeviceInfoService {
   final DeviceInfoPlugin _deviceInfoPlugin;
-  final Logger _logger;
+  final Logger logger;
 
   // Fixed constructor to properly use the plugin parameter
-  DeviceInfoService(this._logger, {DeviceInfoPlugin? plugin})
+  DeviceInfoService(this.logger, {DeviceInfoPlugin? plugin})
     : _deviceInfoPlugin = plugin ?? DeviceInfoPlugin();
 
   Future<Map<String, dynamic>?> getDeviceInfo() async {
@@ -33,11 +33,11 @@ class DeviceInfoService {
           'utsnameMachine': iosInfo.utsname.machine,
         };
       } else {
-        _logger.w('Device info not supported for this platform.');
+        logger.w('Device info not supported for this platform.');
         return {'platform': 'Other', 'details': 'N/A'};
       }
     } catch (e) {
-      _logger.e('Error getting device info: $e');
+      logger.e('Error getting device info: $e');
       return {'platform': 'Unknown', 'error': e.toString()};
     }
   }

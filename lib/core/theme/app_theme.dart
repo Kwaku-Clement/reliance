@@ -9,20 +9,18 @@ class AppTheme {
     colorScheme: const ColorScheme.light(
       primary: AppColors.primaryLight,
       secondary: AppColors.accentLight,
-      background: AppColors.backgroundLight,
       surface: AppColors.cardLight,
       error: AppColors.errorLight,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
-      onBackground: AppColors.textLight,
       onSurface: AppColors.textLight,
       onError: Colors.white,
     ),
     scaffoldBackgroundColor: AppColors.backgroundLight,
     cardColor: AppColors.cardLight,
     appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.primaryLight,
-      foregroundColor: Colors.white,
+      backgroundColor: AppColors.backgroundLight,
+      foregroundColor: Colors.black,
       elevation: 0,
       titleTextStyle: AppTextStyles.headlineMediumLight.copyWith(
         color: Colors.white,
@@ -38,7 +36,7 @@ class AppTheme {
       bodyLarge: AppTextStyles.bodyLargeLight,
       bodyMedium: AppTextStyles.bodyMediumLight,
       bodySmall: AppTextStyles.bodySmallLight,
-      labelLarge: AppTextStyles.buttonLight, // Used for button text
+      labelLarge: AppTextStyles.buttonLight,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -61,12 +59,16 @@ class AppTheme {
       ),
       hintStyle: AppTextStyles.bodySmallLight,
       prefixIconColor: AppColors.textSecondaryLight,
+      suffixIconColor: AppColors.textSecondaryLight,
     ),
     cardTheme: CardThemeData(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ),
-    // Add other theme properties as needed
+    iconTheme: const IconThemeData(
+      color: AppColors.textLight, // Default icon color for light theme
+      size: 24.0,
+    ),
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -75,19 +77,17 @@ class AppTheme {
     colorScheme: const ColorScheme.dark(
       primary: AppColors.primaryDark,
       secondary: AppColors.accentDark,
-      background: AppColors.backgroundDark,
       surface: AppColors.cardDark,
       error: AppColors.errorDark,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
-      onBackground: AppColors.textDark,
       onSurface: AppColors.textDark,
       onError: Colors.white,
     ),
     scaffoldBackgroundColor: AppColors.backgroundDark,
     cardColor: AppColors.cardDark,
     appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.primaryDark,
+      backgroundColor: AppColors.backgroundDark,
       foregroundColor: Colors.white,
       elevation: 0,
       titleTextStyle: AppTextStyles.headlineMediumDark.copyWith(
@@ -127,11 +127,15 @@ class AppTheme {
       ),
       hintStyle: AppTextStyles.bodySmallDark,
       prefixIconColor: AppColors.textSecondaryDark,
+      suffixIconColor: AppColors.textSecondaryDark,
     ),
     cardTheme: CardThemeData(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ),
-    // Add other theme properties as needed
+    iconTheme: const IconThemeData(
+      color: AppColors.textDark, // Default icon color for dark theme
+      size: 24.0,
+    ),
   );
 }

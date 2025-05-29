@@ -5,10 +5,9 @@ import '../utils/secure_storage_service.dart';
 
 class ThemeController extends ChangeNotifier {
   final SecureStorageService _secureStorageService;
-  final Logger _logger;
+  final Logger logger;
 
-  ThemeController(this._secureStorageService)
-    : _logger = GetIt.I.get<Logger>() {
+  ThemeController(this._secureStorageService) : logger = GetIt.I.get<Logger>() {
     // Get logger from GetIt
     _loadThemeMode();
   }
@@ -29,10 +28,10 @@ class ThemeController extends ChangeNotifier {
         _themeMode =
             ThemeMode.system; // Default to system if not set or invalid
       }
-      _logger.i('Loaded theme mode: $_themeMode');
+      logger.i('Loaded theme mode: $_themeMode');
       notifyListeners();
     } catch (e) {
-      _logger.e('Error loading theme mode: $e');
+      logger.e('Error loading theme mode: $e');
     }
   }
 
@@ -53,7 +52,7 @@ class ThemeController extends ChangeNotifier {
         break;
     }
     await _secureStorageService.writeAppSetting(_themeKey, themeString);
-    _logger.i('Set theme mode to: $_themeMode');
+    logger.i('Set theme mode to: $_themeMode');
     notifyListeners();
   }
 }

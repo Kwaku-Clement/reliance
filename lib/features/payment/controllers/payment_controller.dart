@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:logger/logger.dart';
+import 'package:reliance/core/services/api_service.dart';
+import 'package:reliance/core/services/biometric_service.dart';
+import 'package:reliance/core/services/location_service.dart';
+import 'package:reliance/core/services/device_info_service.dart';
+import 'package:reliance/features/auth/models/user_model.dart';
 import 'package:reliance/features/payment/model/payment_request.dart';
-import '../../../core/services/api_service.dart';
-import '../../../core/services/biometric_service.dart';
-import '../../../core/services/location_service.dart';
-import '../../../core/services/device_info_service.dart';
 
 class PaymentController extends ChangeNotifier {
   final ApiService _apiService;
@@ -22,34 +23,53 @@ class PaymentController extends ChangeNotifier {
     this._logger,
   );
 
+  User? _currentUser;
   bool _isLoading = false;
-  String? _statusMessage; // Generic status message, UI will localize
+  String? _statusMessage;
   bool _canUseBiometrics = false;
 
+  User? get user => _currentUser;
   bool get isLoading => _isLoading;
   String? get statusMessage => _statusMessage;
   bool get canUseBiometrics => _canUseBiometrics;
 
-  Future<void> checkBiometricsAvailability() async {
-    _canUseBiometrics = await _biometricService.canCheckBiometrics();
+  void setUser(User? user) {
+    _currentUser = user;
     notifyListeners();
   }
 
-  Future<bool> authenticateBiometrics(String localizedReason) async {
-    return await _biometricService.authenticate(
-      localizedReason: localizedReason,
-    );
+  Future<void> checkBiometricsAvailability() async {
+    try {
+      _canUseBiometrics = await _biometricService.canCheckBiometrics();
+      notifyListeners();
+    } catch (e) {
+      _logger.e('Failed to check biometrics: $e');
+      _canUseBiometrics = false;
+      notifyListeners();
+    }
+  }
+
+  Future<bool> authenticateWithBiometrics(String localizedReason) async {
+    try {
+      return await _biometricService.authenticate(
+        localizedReason: localizedReason,
+      );
+    } catch (e) {
+      _logger.e('Biometric authentication error: $e');
+      return false;
+    }
   }
 
   Future<void> makePayment(double amount, String recipient) async {
-    // Controllers receive generic messages; UI handles localization
     if (amount <= 0) {
       _statusMessage = 'Invalid amount.';
       notifyListeners();
+      _logger.w('Payment attempt with invalid amount: $amount');
       return;
     }
     if (recipient.isEmpty) {
       _statusMessage = 'Recipient cannot be empty.';
+      _logger.w('Payment attempt with empty recipient.');
       notifyListeners();
       return;
     }
@@ -61,7 +81,7 @@ class PaymentController extends ChangeNotifier {
     try {
       final Map<String, dynamic>? deviceInfo = await _deviceInfoService
           .getDeviceInfo();
-      _logger.d('Collected Device Info: $deviceInfo');
+      _logger.d('Collected device info: $deviceInfo');
 
       final Position? currentPosition = await _locationService
           .getCurrentLocation();
@@ -70,10 +90,10 @@ class PaymentController extends ChangeNotifier {
               'latitude': currentPosition.latitude,
               'longitude': currentPosition.longitude,
               'accuracy': currentPosition.accuracy,
-              'timestamp': currentPosition.timestamp.toIso8601String(),
+              'timestamp': currentPosition?.timestamp?.toIso8601String() ?? '',
             }
           : null;
-      _logger.d('Collected Location Info: $locationInfo');
+      _logger.d('Collected location info: $locationInfo');
 
       final paymentRequest = PaymentRequest(
         amount: amount,
@@ -91,10 +111,10 @@ class PaymentController extends ChangeNotifier {
 
       _statusMessage =
           'Payment successful! Transaction ID: ${response['transactionId']}';
-      _logger.i('Payment successful: ${response['transactionId']}');
+      _logger.i('Successful payment: ${response['transactionId']}');
     } catch (e) {
       _statusMessage = 'Payment failed: ${e.toString()}';
-      _logger.e('Payment failed: $e');
+      _logger.e('Payment error: $e');
     } finally {
       _isLoading = false;
       notifyListeners();
