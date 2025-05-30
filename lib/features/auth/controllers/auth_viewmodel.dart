@@ -1,5 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
 import 'package:reliance/core/router/app_router.dart';
 import 'package:reliance/core/services/auth_service.dart';
@@ -54,7 +55,7 @@ class AuthViewModel extends BaseAuthViewModel {
   Future<void> changePassword(BuildContext context) async {
     if (isDisposed || isLoading) return;
     final localizations = AppLocalizations.of(context)!;
-    ;
+
     clearError();
 
     if (_changePasswordOldController.text.isEmpty ||
@@ -167,7 +168,7 @@ class AuthViewModel extends BaseAuthViewModel {
   Future<void> resetPassword(BuildContext context, String token) async {
     if (isDisposed || isLoading) return;
     final localizations = AppLocalizations.of(context)!;
-    ;
+
     clearError();
 
     if (_resetPasswordNewPasswordController.text.isEmpty ||
@@ -233,7 +234,7 @@ class AuthViewModel extends BaseAuthViewModel {
   Future<void> setPasscode(BuildContext context) async {
     if (isDisposed || isLoading) return;
     final localizations = AppLocalizations.of(context)!;
-    ;
+
     clearError();
 
     if (_setPasscodeController.text.isEmpty ||
@@ -279,7 +280,7 @@ class AuthViewModel extends BaseAuthViewModel {
   Future<void> scanIdCard(BuildContext context) async {
     if (isDisposed || isLoading) return;
     final localizations = AppLocalizations.of(context)!;
-    ;
+
     clearError();
 
     updateLoading(true);
@@ -305,7 +306,7 @@ class AuthViewModel extends BaseAuthViewModel {
   Future<void> scanFace(BuildContext context) async {
     if (isDisposed || isLoading) return;
     final localizations = AppLocalizations.of(context)!;
-    ;
+
     clearError();
 
     updateLoading(true);
@@ -331,7 +332,7 @@ class AuthViewModel extends BaseAuthViewModel {
   Future<void> completeProfileSetup(BuildContext context) async {
     if (isDisposed || isLoading) return;
     final localizations = AppLocalizations.of(context)!;
-    ;
+
     clearError();
 
     if (!_isIdScanned || !_isFaceScanned) {
@@ -365,7 +366,7 @@ class AuthViewModel extends BaseAuthViewModel {
 
     final loggedIn = await _authService.isLoggedIn();
 
-    if (await _authService.isInitialSetupRequired()) {
+    if (_authService.isInitialSetupRequired()) {
       logger.i('Initial profile setup required. Navigating to /profile-setup.');
       _appRouter.go('/profile-setup');
     } else if (loggedIn) {

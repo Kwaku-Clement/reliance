@@ -202,7 +202,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 style: AppTextStyles.bodySmallLight.copyWith(
                   color: Theme.of(
                     context,
-                  ).colorScheme.onBackground.withOpacity(0.7),
+                  ).colorScheme.onSurface.withValues(alpha: 0.7),
                   fontStyle: FontStyle.italic,
                 ),
                 textAlign: TextAlign.center,
@@ -213,7 +213,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               style: AppTextStyles.bodySmallLight.copyWith(
                 color: Theme.of(
                   context,
-                ).colorScheme.onBackground.withOpacity(0.5),
+                ).colorScheme.onSurface.withValues(alpha: 0.5),
                 fontStyle: FontStyle.italic,
               ),
               textAlign: TextAlign.center,

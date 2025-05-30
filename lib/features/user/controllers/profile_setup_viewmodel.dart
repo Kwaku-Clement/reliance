@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
 import 'package:reliance/core/router/app_router.dart';
 import 'package:reliance/core/services/auth_service.dart';

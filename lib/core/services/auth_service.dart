@@ -4,13 +4,13 @@ import 'package:reliance/core/services/api_service.dart';
 import 'package:reliance/core/utils/secure_storage_service.dart';
 import 'package:reliance/features/auth/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:uuid/uuid.dart'; // Keep Uuid for dummy data generation
+import 'package:uuid/uuid.dart';
 
 class AuthService extends ChangeNotifier {
   final SecureStorageService _secureStorageService;
   final Logger _logger;
   final SharedPreferences _prefs;
-  final ApiService _apiService; // ApiService for making actual API calls
+  final ApiService _apiService;
 
   User? _currentUser;
   // These are specific to dummy OTP logic and will be used for testing.

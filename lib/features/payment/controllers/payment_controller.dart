@@ -90,7 +90,7 @@ class PaymentController extends ChangeNotifier {
               'latitude': currentPosition.latitude,
               'longitude': currentPosition.longitude,
               'accuracy': currentPosition.accuracy,
-              'timestamp': currentPosition?.timestamp?.toIso8601String() ?? '',
+              'timestamp': currentPosition.timestamp.toIso8601String(),
             }
           : null;
       _logger.d('Collected location info: $locationInfo');

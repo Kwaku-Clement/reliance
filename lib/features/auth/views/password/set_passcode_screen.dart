@@ -1,8 +1,6 @@
-// lib/features/auth/views/set_passcode_screen.dart
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // For input formatters
 import 'package:provider/provider.dart';
-import 'package:reliance/features/auth/controllers/auth_viewmodel.dart'; // Changed import
+import 'package:reliance/features/auth/controllers/auth_viewmodel.dart';
 import 'package:reliance/l10n/app_localizations.dart';
 
 class SetPasscodeScreen extends StatelessWidget {
@@ -10,72 +8,82 @@ class SetPasscodeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Change Provider type to AuthViewModel
-    final authViewModel = Provider.of<AuthViewModel>(context);
     final localizations = AppLocalizations.of(context)!;
-
     return Scaffold(
       appBar: AppBar(title: Text(localizations.setPasscodeTitle)),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: authViewModel.setPasscodeController,
-              decoration: InputDecoration(
-                labelText: localizations.passcodeHint,
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    authViewModel.obscurePasscode
-                        ? Icons.visibility
-                        : Icons.visibility_off,
-                  ),
-                  onPressed: authViewModel.togglePasscodeVisibility,
+      body: Consumer<AuthViewModel>(
+        builder: (context, viewModel, child) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  localizations.setPasscodeDescription,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
-              ),
-              keyboardType: TextInputType.number,
-              obscureText: authViewModel.obscurePasscode,
-              maxLength: 4,
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                const SizedBox(height: 24),
+                TextField(
+                  controller: viewModel.setPasscodeController,
+                  decoration: InputDecoration(
+                    labelText: localizations.passcodeLabel,
+                    border: const OutlineInputBorder(),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        viewModel.obscurePasscode
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                      onPressed: viewModel.togglePasscodeVisibility,
+                    ),
+                  ),
+                  keyboardType: TextInputType.number,
+                  obscureText: viewModel.obscurePasscode,
+                  maxLength: 4,
+                ),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: viewModel.setConfirmPasscodeController,
+                  decoration: InputDecoration(
+                    labelText: localizations.confirmPasscodeLabel,
+                    border: const OutlineInputBorder(),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        viewModel.obscureConfirmPasscode
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                      onPressed: viewModel.toggleConfirmPasscodeVisibility,
+                    ),
+                  ),
+                  keyboardType: TextInputType.number,
+                  obscureText: viewModel.obscureConfirmPasscode,
+                  maxLength: 4,
+                ),
+                const SizedBox(height: 24),
+                if (viewModel.error != null)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: Text(
+                      viewModel.error!,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                  ),
+                ElevatedButton(
+                  onPressed: viewModel.isLoading
+                      ? null
+                      : () => viewModel.setPasscode(context),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                  ),
+                  child: Text(
+                    localizations.confirmButtonText,
+                  ), // e.g., "Confirm"
+                ),
+              ],
             ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: authViewModel.setConfirmPasscodeController,
-              decoration: InputDecoration(
-                labelText: localizations.confirmPasscodeHint,
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    authViewModel.obscureConfirmPasscode
-                        ? Icons.visibility
-                        : Icons.visibility_off,
-                  ),
-                  onPressed: authViewModel.toggleConfirmPasscodeVisibility,
-                ),
-              ),
-              keyboardType: TextInputType.number,
-              obscureText: authViewModel.obscureConfirmPasscode,
-              maxLength: 4,
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            ),
-            if (authViewModel.error != null) // Access error from authViewModel
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Text(
-                  authViewModel.error!,
-                  style: const TextStyle(color: Colors.red),
-                ),
-              ),
-            const SizedBox(height: 16),
-            authViewModel
-                    .isLoading // Access isLoading from authViewModel
-                ? const CircularProgressIndicator()
-                : ElevatedButton(
-                    onPressed: () => authViewModel.setPasscode(context),
-                    child: Text(localizations.setPasscodeButton),
-                  ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

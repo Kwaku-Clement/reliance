@@ -32,13 +32,13 @@
   "logoutSuccess": "Déconnexion réussie.",
   "registrationSuccess": "Inscription réussie !",
   "registrationFailed": "Échec de l'inscription : {message}",
-"@registrationFailed": {
-  "placeholders": {
-    "message": {
-      "type": "String"
+  "@registrationFailed": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
     }
-  }
-},
+  },
   "requiredField": "Tous les champs sont requis.",
   "passwordsDoNotMatch": "Les mots de passe ne correspondent pas.",
   "passwordLengthError": "Le mot de passe doit comporter au moins 8 caractères.",
@@ -202,29 +202,47 @@
       "error": {}
     }
   },
-    "confirmButtonText": "Confirmer",
-    "confirmPasscodeLabel": "Confirmer le code secret",
-    "passcodeLabel": "Code secret",
-    "setPasscodeDescription": "Veuillez définir un code secret à 4 chiffres pour votre compte.",
-    "scanIdTitle": "Scannez votre pièce d'identité",
-    "scanIdDescription": "Veuillez scanner le recto et le verso de votre pièce d'identité.",
-    "scanIdFrontButton": "Scanner le recto",
-    "scanIdBackButton": "Scanner le verso",
-    "nextButtonText": "Suivant",
-    "completeSetupButton": "Terminer la configuration",
-    "takeSelfieButton": "Prendre un selfie",
-    "scanFaceDescription": "Positionnez votre visage dans le cadre.",
-    "scanFaceTitle": "Scannez votre visage",
-    "genderLabel": "Sexe",
-    "dobLabel": "Date de naissance",
-    "lastNameLabel": "Nom de famille",
-    "firstNameLabel": "Prénom",
-    "personalDetailsDescription": "Veuillez fournir vos informations personnelles.",
-    "personalDetailsTitle": "Détails personnels",
-    "idScanUploadError": "Échec du téléchargement du scan d'identité.",
-    "idScanRequired": "Le scan d'identité est requis.",
-    "imagePickError": "Échec de la sélection de l'image.",
-    "faceScanUploadError": "Échec du téléchargement du scan facial.",
-    "selfieRequired": "Un selfie est requis.",
-    "selfieCaptureError": "Échec de la capture du selfie."
+  "confirmButtonText": "Confirmer",
+  "confirmPasscodeLabel": "Confirmer le code secret",
+  "passcodeLabel": "Code secret",
+  "setPasscodeDescription": "Veuillez définir un code secret à 4 chiffres pour votre compte.",
+  "scanIdTitle": "Scannez votre pièce d'identité",
+  "scanIdDescription": "Veuillez scanner le recto et le verso de votre pièce d'identité.",
+  "scanIdFrontButton": "Scanner le recto",
+  "scanIdBackButton": "Scanner le verso",
+  "nextButtonText": "Suivant",
+  "completeSetupButton": "Terminer la configuration",
+  "takeSelfieButton": "Prendre un selfie",
+  "scanFaceDescription": "Positionnez votre visage dans le cadre.",
+  "scanFaceTitle": "Scannez votre visage",
+  "genderLabel": "Sexe",
+  "dobLabel": "Date de naissance",
+  "lastNameLabel": "Nom de famille",
+  "firstNameLabel": "Prénom",
+  "personalDetailsDescription": "Veuillez fournir vos informations personnelles.",
+  "personalDetailsTitle": "Détails personnels",
+  "idScanUploadError": "Échec du téléchargement du scan d'identité.",
+  "idScanRequired": "Le scan d'identité est requis.",
+  "imagePickError": "Échec de la sélection de l'image.",
+  "faceScanUploadError": "Échec du téléchargement du scan facial.",
+  "selfieRequired": "Un selfie est requis.",
+  "selfieCaptureError": "Échec de la capture du selfie.",
+  "firstNameRequired": "Le prénom est requis.",
+  "firstNameTooShort": "Le prénom doit comporter au moins 2 caractères.",
+  "lastNameRequired": "Le nom de famille est requis.",
+  "lastNameTooShort": "Le nom de famille doit comporter au moins 2 caractères.",
+  "dobRequired": "La date de naissance est requise.",
+  "invalidDobFormat": "Format de date de naissance invalide. Veuillez utiliser le format AAAA-MM-JJ.",
+  "dobMustBeOver18": "Vous devez avoir au moins 18 ans pour continuer.",
+  "genderRequired": "Veuillez sélectionner votre genre.",
+  "selectDobHelpText": "Sélectionnez votre date de naissance",
+  "cancelButtonText": "ANNULER",
+  "confirmButtonText": "OK",
+  "invalidDateFormat": "Format de date invalide.",
+  "invalidDateRange": "Date hors de la plage valide.",
+  "personalDetailsSavedSuccess": "Informations personnelles enregistrées avec succès!",
+  "genericSubmissionError": "Une erreur inattendue est survenue. Veuillez réessayer.",
+  "genderMale": "Homme",
+  "genderFemale": "Femme",
+  "genderOther": "Autre"
 }
